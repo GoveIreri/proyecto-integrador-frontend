@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CalmaMind - Meditación para tu mente</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>CalmaMind</h1>
+    <p>Tu app de meditación para alcanzar el equilibrio interior</p>
+  </header>
+
+  <section class="hero">
+    <article>
+      <h2>Respira. Relájate. Renueva tu mente.</h2>
+      <p>Descubre sesiones guiadas, sonidos relajantes y más. Totalmente gratis.</p>
+      <button id="subscribeBtn">Suscríbete</button>
+    </article>
+  </section>
+
+  <section class="features">
+    <article>
+      <h3>🧘‍♀️ Meditaciones Diarias</h3>
+      <p>Encuentra paz con sesiones personalizadas cada día.</p>
+    </article>
+    <article>
+      <h3>🎵 Sonidos Relajantes</h3>
+      <p>Ambientes naturales para ayudarte a desconectar.</p>
+    </article>
+    <article>
+      <h3>📊 Seguimiento del Progreso</h3>
+      <p>Visualiza tu crecimiento emocional con estadísticas.</p>
+    </article>
+  </section>
+
+  <section class="contact">
+    <h2>¡Contáctanos!</h2>
+    <form id="contactForm" novalidate>
+      <input type="text" id="name" name="name" placeholder="Nombre" required />
+      <small class="error" id="nameError"></small>
+
+      <input type="email" id="email" name="email" placeholder="Email" required />
+      <small class="error" id="emailError"></small>
+
+      <textarea id="message" name="message" placeholder="Mensaje" required></textarea>
+      <small class="error" id="messageError"></small>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 CalmaMind. Todos los derechos reservados.</p>
+  </footer>
+
+  <!-- Modal de confirmación -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>¡Gracias por visitarnos!</h2>
+    </div>
+  </div>
+
+  <!-- Contenedor de confeti -->
+  <div id="confetti-container"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

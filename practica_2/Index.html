@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego Maravilloso</title>
+    <link rel="stylesheet" href="estilo_juego.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1 class="title">Piedra, Papel o Tijera</h1>
+        
+        <div class="choices-container">
+            <button class="choice-btn" onclick="playerChoice('piedra')">🪨</button>
+            <button class="choice-btn" onclick="playerChoice('papel')">📄</button>
+            <button class="choice-btn" onclick="playerChoice('tijera')">✂️</button>
+        </div>
+
+        <div class="result-section">
+            <div class="choices-display">
+                <div class="player-choice">
+                    <div>Jugador 1</div>
+                    <div id="player-display"></div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="computer-choice">
+                    <div>Computadora AM</div>
+                    <div id="computer-display"></div>
+                </div>
+            </div>
+
+            <div id="result-message" class="result-message" style="display: none;">
+                Elige tu ataque :D
+            </div>
+        </div>
+
+        <div class="scoreboard">
+            <div class="score-item">
+                <div class="score-label">Victorias</div>
+                <div id="wins" class="score-value">0</div>
+            </div>
+            <div class="score-item">
+                <div class="score-label">Empates</div>
+                <div id="ties" class="score-value">0</div>
+            </div>
+            <div class="score-item">
+                <div class="score-label">Derrotas</div>
+                <div id="losses" class="score-value">0</div>
+            </div>
+        </div>
+
+        <button class="reset-btn" onclick="resetGame()">Reiniciar Puntuación</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

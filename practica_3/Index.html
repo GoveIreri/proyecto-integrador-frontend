@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarjeta de Presentación</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="tarjeta-container">
+        <div class="decoracion"></div>
+
+        <div class="foto-perfil">
+            <img src="foto-perfil.jpg" alt="Foto de perfil" class="imagen-perfil">
+        </div>
+
+        <h1 class="nombre">Govea Robles Ireri Sofía</h1>
+        <p class="carrera">Ingeniería Informática</p>
+
+        <p class="descripcion">
+            Soy estudiante de 6to semestre en ingeniería Informática
+            que quiere aprender lo posible sobre HTML5, CSS3 Y 
+            JavaScript
+        </p>
+
+        <button class="btn-contacto" onclick="toggleContacto()">
+            Mostrar Contacto
+        </button>
+
+        <div class="contacto-info" id="contactoInfo">
+            <div class="contacto-item">
+                <strong>Correo:</strong> irerigov@gmail.com
+            </div>
+            <div class="contacto-item">
+                <strong>Teléfono:</strong> +52 55 7069 5901
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let contactoVisible = false;
+
+        function toggleContacto() {
+            const contactoInfo = document.getElementById('contactoInfo');
+            const boton = document.querySelector('.btn-contacto');
+
+            if (contactoVisible) {
+                // Ocultar contacto
+                contactoInfo.classList.remove('mostrar');
+                boton.textContent = 'Mostrar Contacto';
+                contactoVisible = false;
+            } else {
+
+                contactoInfo.classList.add('mostrar');
+                boton.textContent = 'Ocultar Contacto';
+                contactoVisible = true;
+            }
+        }
+
+        window.addEventListener('load', function () {
+            const tarjeta = document.querySelector('.tarjeta-container');
+            tarjeta.style.opacity = '0';
+            tarjeta.style.transform = 'translateY(50px)';
+            tarjeta.style.transition = 'all 0.8s ease';
+
+            setTimeout(() => {
+                tarjeta.style.opacity = '1';
+                tarjeta.style.transform = 'translateY(0)';
+            }, 100);
+        });
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const fotoPerfil = document.querySelector('.foto-perfil');
+
+            fotoPerfil.addEventListener('mouseenter', function () {
+                this.style.animation = 'pulse 0.6s ease-in-out';
+            });
+
+            fotoPerfil.addEventListener('animationend', function () {
+                this.style.animation = '';
+            });
+        });
+    </script>
+</body>
+
+</html>

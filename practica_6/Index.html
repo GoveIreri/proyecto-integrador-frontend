@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clima Actual</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <div class="loader" id="loader"></div>
+
+    <div class="weather-card hidden" id="weatherCard">
+      <h2 id="location"></h2>
+      <div id="icon"></div>
+      <p id="description"></p>
+      <p><strong>Temperatura:</strong> <span id="temp"></span>°C</p>
+      <p><strong>Sensación:</strong> <span id="feelsLike"></span>°C</p>
+      <p><strong>Humedad:</strong> <span id="humidity"></span>%</p>
+      <p><strong>Viento:</strong> <span id="wind"></span> km/h</p>
+    </div>
+
+    <div id="error" class="hidden"></div>
+
+    <div id="citySearch" class="hidden">
+      <input type="text" id="cityInput" placeholder="Buscar ciudad...">
+      <button onclick="getWeatherByCity()">Buscar</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

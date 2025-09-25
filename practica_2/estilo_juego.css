@@ -1,0 +1,279 @@
+/* Reset y configuración base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #f7f9fd 0%, #3d3861 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/* Contenedor principal del juego */
+.game-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+/* Título principal */
+.title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #ffd700, #ffed4a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Contenedor de botones de elección */
+.choices-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+/* Botones de elección (Piedra, Papel, Tijera) */
+.choice-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 15px;
+    padding: 20px;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    min-width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.choice-btn:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.choice-btn:active {
+    transform: scale(0.95);
+}
+
+/* Sección de resultados */
+.result-section {
+    margin-bottom: 30px;
+}
+
+/* Mostrar elecciones del jugador y computadora */
+.choices-display {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.player-choice, .computer-choice {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 120px;
+}
+
+.vs {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffd700;
+}
+
+/* Mensaje de resultado */
+.result-message {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: all 0.5s ease;
+}
+
+/* Estilos para diferentes tipos de resultado */
+.win {
+    background: rgba(46, 204, 113, 0.3);
+    color: #2ecc71;
+}
+
+.lose {
+    background: rgba(231, 76, 60, 0.3);
+    color: #e74c3c;
+}
+
+.tie {
+    background: rgba(241, 196, 15, 0.3);
+    color: #f1c40f;
+}
+
+/* Marcador de puntuación */
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.score-item {
+    text-align: center;
+}
+
+.score-label {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 5px;
+}
+
+.score-value {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* Botón de reinicio */
+.reset-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.reset-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+/* Media queries para dispositivos móviles */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+    
+    .game-container {
+        padding: 30px 25px;
+        margin: 10px;
+    }
+    
+    .title {
+        font-size: 2.2rem;
+        margin-bottom: 30px;
+    }
+    
+    .choice-btn {
+        min-width: 110px;
+        height: 110px;
+        font-size: 2.8rem;
+        gap: 15px;
+    }
+    
+    .choices-display {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .player-choice, .computer-choice {
+        min-width: 120px;
+        padding: 15px;
+    }
+    
+    .result-message {
+        font-size: 1.5rem;
+        padding: 20px;
+    }
+    
+    .scoreboard {
+        padding: 20px 15px;
+    }
+    
+    .score-value {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    
+    .choice-btn {
+        min-width: 95px;
+        height: 95px;
+        font-size: 2.2rem;
+        padding: 20px;
+    }
+    
+    .choices-container {
+        gap: 12px;
+    }
+    
+    .result-message {
+        font-size: 1.3rem;
+        padding: 18px;
+    }
+    
+    .score-value {
+        font-size: 1.8rem;
+    }
+    
+    .vs {
+        font-size: 1.5rem;
+    }
+}
+
+/* Animaciones adicionales */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 0 0 30px rgba(255, 255, 255, 0.2); }
+}
+
+/* Efecto de carga inicial */
+.game-container {
+    animation: slideInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

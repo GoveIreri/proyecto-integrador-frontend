@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Memoria</title>
+    <!-- Enlace al archivo CSS externo -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Título principal del juego -->
+    <h1 class="game-title">Juego de Memoria</h1>
+    
+    <!-- Panel de información del juego -->
+    <div class="game-info">
+        <!-- Contador de tiempo -->
+        <div class="info-item">
+            <div class="info-label">Tiempo</div>
+            <div class="info-value" id="timer">00:00</div>
+        </div>
+        
+        <!-- Contador de intentos -->
+        <div class="info-item">
+            <div class="info-label">Intentos</div>
+            <div class="info-value" id="attempts">0</div>
+        </div>
+        
+        <!-- Botón para reiniciar el juego -->
+        <button class="restart-btn" onclick="restartGame()">🔄 Reiniciar</button>
+    </div>
+
+    <!-- Contenedor principal del tablero de cartas -->
+    <div class="game-container" id="gameBoard">
+        <!-- Las cartas se generan dinámicamente con JavaScript -->
+    </div>
+
+    <!-- Modal de victoria que aparece al completar el juego -->
+    <div class="victory-modal" id="victoryModal">
+        <div class="victory-content">
+            <div class="victory-title">¡Felicidades!</div>
+            <div class="victory-stats" id="victoryStats">
+                <!-- Las estadísticas se llenan dinámicamente -->
+            </div>
+            <button class="victory-close" onclick="closeVictoryModal()">Jugar de Nuevo</button>
+        </div>
+    </div>
+
+    <!-- Enlace al archivo JavaScript externo -->
+    <script src="script.js"></script>
+</body>
+</html>

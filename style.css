@@ -1,0 +1,346 @@
+body {
+    background-image: url(fondo.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+h1, p, ul {
+    margin: 20px 0;
+    padding: 0; 
+    list-style: none;
+}
+
+/* Título principal */
+h1 {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #000000, #4b0000, #000000);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 8px rgba(0,0,0,0.6);
+    transition: all 0.4s ease-in-out;
+    z-index: 1;
+}
+
+/* Resplandor de base */
+h1::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180%;
+    height: 180%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.74) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+    z-index: -1;
+    animation: destello 6s infinite ease-in-out;
+}
+
+/* Subrayado animado */
+h1::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #000000, #800000, #000000);
+    border-radius: 2px;
+    animation: subrayado 3s infinite alternate;
+}
+
+/* Hover con brillo bordó */
+h1:hover {
+    text-shadow: 0 0 15px rgba(139,0,0,0.9), 0 0 25px rgba(139,0,0,0.7);
+    transform: scale(1.05);
+}
+
+/* Animación suave del subrayado */
+@keyframes subrayado {
+    0%   { width: 40px; opacity: 0.6; }
+    100% { width: 80px; opacity: 1; }
+}
+
+/* Animación del destello de base */
+@keyframes destello {
+    0%, 100% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+    50%      { opacity: 0.7; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* Subtítulo */
+.contenedor > p {
+    font-size: 1.1em;
+    color: #b9b9b9;
+    font-style: italic;
+    margin-top: 5px;
+    text-shadow: 0 0 6px rgba(0,0,0,0.5);
+}
+
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 20px;
+    padding: 40px 60px;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(12px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    border: 2px solid rgba(139,0,0,0.4);
+}
+
+/* Efecto de borde animado */
+.contenedor::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, rgba(139,0,0,0.8), rgba(0,0,0,0.8));
+    background-size: 200% 200%;
+    animation: bordeBrillo 6s infinite alternate;
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    z-index: 1;
+}
+
+/* Animación del borde */
+@keyframes bordeBrillo {
+    0%   { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+/* Destellos internos */
+.contenedor::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(139,0,0,0.2) 0%, transparent 70%);
+    animation: destellos 8s infinite linear;
+    z-index: 0;
+}
+
+@keyframes destellos {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;              
+    padding: 0;
+    margin: 20px 0 0 0;
+}
+
+ul li a {
+    display: inline-block;              
+    text-decoration: none;              
+    color: #fff;                        
+    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 10px 25px;                 
+    border-radius: 8px;                 
+    transition: background 0.3s;        
+}
+
+ul li a:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.practicas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    width: 100%;
+    max-width: 1000px;
+    margin-top: 20px;
+}
+
+.practica {
+    background: rgba(19, 19, 19, 0.15);
+    border-radius: 16px;
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 2; /* ✅ así siempre flotan sobre los efectos */
+    overflow: hidden;
+}
+
+/* Burbujas con pseudo-elementos */
+.practica::before,
+.practica::after {
+    content: "";
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+/* Posiciones iniciales de las burbujas */
+.practica::before {
+    top: -60px;
+    left: -60px;
+    animation: burbuja 6s infinite ease-in-out;
+}
+
+.practica::after {
+    bottom: -60px;
+    right: -60px;
+    animation: burbuja 7s infinite ease-in-out;
+}
+
+/* Al pasar el mouse, aparecen */
+.practica:hover::before,
+.practica:hover::after {
+    opacity: 1;
+}
+
+/* Animación suave de "flotación" */
+@keyframes burbuja {
+    0%   { transform: scale(0.8) translateY(0); }
+    50%  { transform: scale(1.1) translateY(-15px); }
+    100% { transform: scale(0.8) translateY(0); }
+}
+
+.practica a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+}
+
+.icono {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.practica h2 {
+    margin: 10px 0;
+    font-size: 1.3em;
+}
+
+.practica p {
+    font-size: 0.9em;
+    color: #ddd;
+    margin: 0;
+}
+
+/* Hover vistoso */
+.practica:hover {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+/* Burbuja base */
+.bubble {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.699);
+    opacity: 0;
+    pointer-events: none;
+    animation: float 6s infinite ease-in-out;
+    transition: opacity 0.3s;
+}
+
+/* Animación flotante */
+@keyframes float {
+    0%   { transform: translateY(0) scale(0.8); }
+    50%  { transform: translateY(-20px) scale(1.1); }
+    100% { transform: translateY(0) scale(0.8); }
+}
+
+/* Solo aparecen en hover */
+.practica:hover .bubble {
+    opacity: 1;
+}
+
+/* Variaciones por cada burbuja */
+.bubble:nth-child(2) {
+    width: 15px; height: 15px;
+    top: 10%; left: -15px;
+    animation-duration: 4s;
+}
+.bubble:nth-child(3) {
+    width: 20px; height: 20px;
+    bottom: 20%; right: -20px;
+    animation-duration: 5s;
+}
+.bubble:nth-child(4) {
+    width: 30px; height: 30px;
+    top: -15px; right: 25%;
+    animation-duration: 7s;
+}
+.bubble:nth-child(5) {
+    width: 18px; height: 18px;
+    bottom: -10px; left: 30%;
+    animation-duration: 6s;
+}
+.bubble:nth-child(6) {
+    width: 25px; height: 25px;
+    top: 40%; left: -25px;
+    animation-duration: 8s;
+}
+
+/* Burbuja del contenedor */
+.bubble-container {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(168, 168, 168, 0.466);
+    animation: bubbleFloat 12s infinite ease-in-out;
+    z-index: 0; /* siempre detrás del contenido */
+}
+
+/* Distintas posiciones y tamaños */
+.bubble-container:nth-child(3) { /* primera burbuja */
+    width: 120px; height: 120px;
+    bottom: -40px; left: 20%;
+    animation-duration: 15s;
+}
+.bubble-container:nth-child(4) { /* segunda */
+    width: 80px; height: 80px;
+    top: 10%; right: 15%;
+    animation-duration: 18s;
+}
+.bubble-container:nth-child(5) { /* tercera */
+    width: 150px; height: 150px;
+    bottom: 15%; right: -60px;
+    animation-duration: 20s;
+}
+
+/* Animación suave */
+@keyframes bubbleFloat {
+    0%   { transform: translateY(0) scale(1); opacity: 0.4; }
+    50%  { transform: translateY(-40px) scale(1.1); opacity: 0.7; }
+    100% { transform: translateY(0) scale(1); opacity: 0.4; }
+}
+
