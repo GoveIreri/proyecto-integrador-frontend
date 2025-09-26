@@ -1,37 +1,52 @@
-
-
+/* === RESET === */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+h1 {
+    font-size: 48px;
+    color: #FFD700;
+    transform: rotate(-2deg);
+    letter-spacing: 2px;
+    text-shadow: 
+        2px 2px 0 #CC6600,
+        4px 4px 0 #CC6600,
+        6px 6px 0 #CC6600,
+        8px 8px 0 #CC6600,
+        10px 10px 0 #CC6600,
+        12px 12px 0 #CC6600,
+        14px 14px 0 #CC6600,
+        16px 16px 0 #CC6600; /* sombra larga naranja oscuro */
+}
+
+
+/* === BODY === */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #462d63 0%, #73539c 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
     color: white;
     overflow-x: hidden;
-    user-select: none;
+    animation: gradientShift 15s ease infinite;
 }
 
-/* Header del juego */
+
+/* === HEADER === */
 .game-header {
     width: 100%;
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    border-radius: 15px;
 }
 
 .back-button {
@@ -39,11 +54,10 @@ body {
     border: none;
     color: white;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     text-decoration: none;
     transition: all 0.3s ease;
-    font-weight: 500;
 }
 
 .back-button:hover {
@@ -52,86 +66,65 @@ body {
 }
 
 .game-title {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* === HUD === */
 .hud {
     display: flex;
     gap: 2rem;
     font-weight: bold;
-    font-size: 1rem;
-}
-
-.hud span {
-    padding: 0.3rem 0.8rem;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
     backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Contenedor del juego */
+/* === GAME CONTAINER === */
 .game-container {
     margin: 2rem 0;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
     position: relative;
-    border: 3px solid rgba(255, 255, 255, 0.1);
 }
 
 #gameCanvas {
     background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 70%, #228B22 100%);
     display: block;
-    cursor: pointer;
-    transition: filter 0.3s ease;
 }
 
-#gameCanvas:hover {
-    filter: brightness(1.05);
-}
-
-/* Controles */
+/* === CONTROLS === */
 .controls {
     text-align: center;
     margin: 1rem 0;
-    padding: 1.5rem;
+    padding: 1rem;
     background: rgba(255, 255, 255, 0.1);
-    border-radius: 15px;
+    border-radius: 12px;
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    max-width: 600px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
 .controls p {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.controls strong {
-    color: #ffd700;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-/* Modal Game Over */
+/* === MODAL === */
 .game-over-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+    background: rgba(0,0,0,0.85);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1000;
-    animation: fadeIn 0.3s ease-out;
+    animation: fadeIn 0.5s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -142,145 +135,119 @@ body {
 .modal-content {
     background: white;
     color: #333;
-    padding: 2.5rem;
+    padding: 2rem;
     border-radius: 20px;
     text-align: center;
-    max-width: 450px;
+    max-width: 400px;
     width: 90%;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-    transform: translateY(-20px);
-    animation: slideIn 0.4s ease-out 0.1s forwards;
-    opacity: 0;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    transform: scale(0.8);
+    animation: modalPop 0.3s ease forwards;
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+@keyframes modalPop {
+    to { transform: scale(1); }
 }
 
 .modal-content h2 {
     color: #e74c3c;
-    margin-bottom: 1.5rem;
-    font-size: 2.2rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    font-size: 2rem;
 }
 
 .score-display {
     background: #f8f9fa;
-    padding: 1.5rem;
-    border-radius: 15px;
-    margin: 1.5rem 0;
-    border-left: 5px solid #4a90e2;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    border-radius: 12px;
+    margin: 1rem 0;
+    border-left: 4px solid #4a90e2;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .score-display p {
-    margin: 0.8rem 0;
+    margin: 0.5rem 0;
     font-weight: bold;
-    font-size: 1.1rem;
-}
-
-#newRecord {
-    animation: pulse 1s infinite;
-    font-size: 1.2rem;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
 }
 
 .name-input {
     width: 100%;
-    padding: 1rem;
+    padding: 0.8rem;
     border: 2px solid #ddd;
-    border-radius: 10px;
-    margin: 1.5rem 0;
-    font-size: 1.1rem;
+    border-radius: 12px;
+    margin: 1rem 0;
+    font-size: 1rem;
     transition: all 0.3s ease;
-    outline: none;
 }
 
 .name-input:focus {
+    outline: none;
     border-color: #4a90e2;
-    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
-    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(74,144,226,0.4);
 }
 
 .modal-buttons {
     display: flex;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .btn {
     flex: 1;
-    padding: 1rem;
+    padding: 0.8rem;
     border: none;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: bold;
     transition: all 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #4a90e2, #357abd);
+    background: #4a90e2;
     color: white;
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #357abd, #2c5aa0);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+    background: #357abd;
+    transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+    background: #95a5a6;
     color: white;
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #7f8c8d, #6c7b7d);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(149, 165, 166, 0.4);
+    background: #7f8c8d;
+    transform: translateY(-2px);
 }
 
-.btn:active {
-    transform: translateY(-1px);
+.btn-secondary:active {
+    transform: translateY(1px);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.2);
 }
 
-/* Leaderboard */
+/* === LEADERBOARD === */
 .leaderboard {
     margin-top: 2rem;
     width: 100%;
-    max-width: 700px;
+    max-width: 600px;
     background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 2rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
 }
 
 .leaderboard h3 {
     text-align: center;
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(45deg, #ffd700, #ffed4a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
 .leaderboard-list {
@@ -291,21 +258,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.2rem;
-    margin: 0.8rem 0;
-    background: rgba(255, 255, 255, 0.15);
+    padding: 0.8rem;
+    margin: 0.5rem 0;
+    background: rgba(255,255,255,0.1);
     border-radius: 12px;
     border-left: 4px solid #4a90e2;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .leaderboard-item:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateX(5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background: rgba(255,255,255,0.2);
+    transform: translateY(-3px);
 }
 
 .player-info {
@@ -316,202 +279,35 @@ body {
 
 .rank {
     font-weight: bold;
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     background: #4a90e2;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1rem;
-    color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease;
+    font-size: 0.9rem;
 }
 
-.rank:hover {
-    transform: scale(1.1);
-}
+.rank.gold { background: #f39c12; }
+.rank.silver { background: #95a5a6; }
+.rank.bronze { background: #d35400; }
 
-.rank.gold { 
-    background: linear-gradient(135deg, #ffd700, #ffed4a);
-    color: #8b4513;
-    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
-}
-
-.rank.silver { 
-    background: linear-gradient(135deg, #c0c0c0, #95a5a6);
-    color: #2c3e50;
-    box-shadow: 0 2px 8px rgba(192, 192, 192, 0.4);
-}
-
-.rank.bronze { 
-    background: linear-gradient(135deg, #cd7f32, #d35400);
-    color: white;
-    box-shadow: 0 2px 8px rgba(211, 84, 0, 0.4);
-}
-
-.player-name {
-    font-weight: 600;
-    font-size: 1.1rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.player-score {
-    font-weight: bold;
-    color: #ffd700;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-    font-size: 1rem;
-}
-
-/* Responsive Design */
+/* === MEDIA QUERIES === */
 @media (max-width: 768px) {
     .game-header {
         flex-direction: column;
         gap: 1rem;
         text-align: center;
-        padding: 1rem 0.5rem;
-    }
-
-    .game-title {
-        font-size: 1.5rem;
     }
 
     .hud {
         gap: 1rem;
         font-size: 0.9rem;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .hud span {
-        padding: 0.2rem 0.6rem;
-        font-size: 0.85rem;
     }
 
     #gameCanvas {
         width: 95vw !important;
         height: auto !important;
-        border-radius: 10px;
     }
-
-    .game-container {
-        margin: 1rem 0;
-        width: 95%;
-    }
-
-    .controls {
-        margin: 1rem;
-        padding: 1rem;
-    }
-
-    .controls p {
-        font-size: 1rem;
-    }
-
-    .modal-content {
-        padding: 2rem;
-        margin: 0 1rem;
-    }
-
-    .modal-content h2 {
-        font-size: 1.8rem;
-    }
-
-    .modal-buttons {
-        flex-direction: column;
-        gap: 0.8rem;
-    }
-
-    .btn {
-        padding: 0.8rem;
-        font-size: 1rem;
-    }
-
-    .leaderboard {
-        margin: 1rem;
-        padding: 1.5rem 1rem;
-    }
-
-    .leaderboard h3 {
-        font-size: 1.5rem;
-    }
-
-    .leaderboard-item {
-        padding: 0.8rem 1rem;
-        flex-direction: column;
-        text-align: center;
-        gap: 0.5rem;
-    }
-
-    .player-info {
-        justify-content: center;
-    }
-
-    .rank {
-        width: 30px;
-        height: 30px;
-        font-size: 0.9rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .game-title {
-        font-size: 1.3rem;
-    }
-
-    .hud {
-        gap: 0.5rem;
-    }
-
-    .hud span {
-        padding: 0.2rem 0.5rem;
-        font-size: 0.8rem;
-    }
-
-    .controls p {
-        font-size: 0.9rem;
-    }
-
-    .modal-content {
-        padding: 1.5rem;
-    }
-
-    .leaderboard {
-        padding: 1rem;
-    }
-}
-
-/* Animaciones adicionales */
-@keyframes bounce {
-    0%, 20%, 60%, 100% { transform: translateY(0); }
-    40% { transform: translateY(-10px); }
-    80% { transform: translateY(-5px); }
-}
-
-.btn:focus {
-    animation: bounce 0.6s ease;
-    outline: none;
-}
-
-/* Loading animation */
-.loading {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #4a90e2;
-    animation: spin 1s ease-in-out infinite;
-}
-
-@keyframes spin {
-    to { transform: rotate(360deg); }
-}
-
-/* Efectos de partículas */
-.particle-effect {
-    position: absolute;
-    pointer-events: none;
-    z-index: 1000;
 }
